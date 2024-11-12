@@ -2,6 +2,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { sql } from '@vercel/postgres';
+import { QueryResultRow } from '@vercel/postgres';
 
 // Define the Message type
 interface Message {
@@ -14,11 +15,25 @@ interface Message {
 
 async function getMessages(): Promise<Message[]> {
   try {
-    const { rows } = await sql`
-      SELECT * FROM messages
+    const { rows } = await sql<Message>`
+      SELECT 
+        id::int,
+        sender::text,
+        recipient::text,
+        message::text,
+        created_at::text
+      FROM messages
       ORDER BY created_at DESC
     `;
-    return rows;
+    
+    // Type assertion to ensure rows match Message interface
+    return rows.map((row: QueryResultRow): Message => ({
+      id: Number(row.id),
+      sender: String(row.sender),
+      recipient: String(row.recipient),
+      message: String(row.message),
+      created_at: String(row.created_at)
+    }));
   } catch (error) {
     console.error('Failed to fetch messages:', error);
     return [];
