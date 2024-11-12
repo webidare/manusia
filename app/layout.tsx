@@ -2,10 +2,15 @@
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { ReactNode } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function RootLayout({ children }) {
+interface RootLayoutProps {
+  children: ReactNode
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={inter.className}>
