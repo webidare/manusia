@@ -1,50 +1,71 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Heart, PenLine, BookOpen } from 'lucide-react'
+import { Container } from '@/components/ui/container'
+import { Badge } from '@/components/ui/badge'
+import { Separator } from '@/components/ui/separator'
+import Link from 'next/link'
+import { Heart, PenLine, BookOpen, SparklesIcon } from 'lucide-react'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-white to-pink-50">
-      <div className="max-w-3xl mx-auto px-4 pt-8 md:pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-pink-50 dark:from-pink-950 dark:via-background dark:to-pink-950">
+      <Container className="max-w-3xl px-4 pt-8 md:pt-20">
         {/* Hero Section */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center mb-4">
+        <div className="text-center mb-12 space-y-4">
+          <div className="flex items-center justify-center space-x-2">
+            <Badge variant="secondary" className="px-4 py-1">
+              <SparklesIcon className="w-3 h-3 mr-1" />
+              Share Love Today
+            </Badge>
+          </div>
+          
+          <div className="flex items-center justify-center">
             <Heart className="w-8 h-8 text-pink-500 animate-pulse" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent mb-4">
-            Share Your Love
-          </h1>
-          <p className="text-lg text-gray-600 max-w-md mx-auto">
-            Create and share beautiful love messages with someone special
-          </p>
+
+          <div className="space-y-2">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
+              Share Your Love
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-md mx-auto">
+              Create and share beautiful love messages with someone special
+            </p>
+          </div>
         </div>
+
+        <Separator className="my-8 bg-pink-100 dark:bg-pink-900" />
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          <Card className="group hover:shadow-xl transition-all duration-300 border-pink-100">
+          <Card className="group relative overflow-hidden border border-pink-100 dark:border-pink-900">
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
             <CardHeader className="space-y-1">
               <div className="flex items-center space-x-2">
-                <PenLine className="w-5 h-5 text-pink-500" />
-                <CardTitle className="text-xl text-pink-600">Create Message</CardTitle>
+                <div className="p-2 rounded-md bg-pink-100 dark:bg-pink-900">
+                  <PenLine className="w-4 h-4 text-pink-500" />
+                </div>
+                <CardTitle className="text-xl text-foreground">Create Message</CardTitle>
               </div>
               <CardDescription>Write a heartfelt message</CardDescription>
             </CardHeader>
             <CardContent>
               <Button 
                 asChild 
-                className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 transition-all duration-300 shadow-md hover:shadow-lg"
+                className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600"
               >
                 <Link href="/submit">Start Writing</Link>
               </Button>
             </CardContent>
           </Card>
           
-          <Card className="group hover:shadow-xl transition-all duration-300 border-pink-100">
+          <Card className="group relative overflow-hidden border border-pink-100 dark:border-pink-900">
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
             <CardHeader className="space-y-1">
               <div className="flex items-center space-x-2">
-                <BookOpen className="w-5 h-5 text-pink-500" />
-                <CardTitle className="text-xl text-pink-600">Browse Messages</CardTitle>
+                <div className="p-2 rounded-md bg-pink-100 dark:bg-pink-900">
+                  <BookOpen className="w-4 h-4 text-pink-500" />
+                </div>
+                <CardTitle className="text-xl text-foreground">Browse Messages</CardTitle>
               </div>
               <CardDescription>Read shared love notes</CardDescription>
             </CardHeader>
@@ -52,14 +73,14 @@ export default function HomePage() {
               <Button 
                 asChild 
                 variant="outline" 
-                className="w-full border-2 border-pink-200 text-pink-600 hover:bg-pink-50 transition-all duration-300"
+                className="w-full border-2 border-pink-200 dark:border-pink-800 text-pink-600 dark:text-pink-400 hover:bg-pink-50 dark:hover:bg-pink-950"
               >
                 <Link href="/browse">View Messages</Link>
               </Button>
             </CardContent>
           </Card>
         </div>
-      </div>
+      </Container>
     </div>
   )
 }
