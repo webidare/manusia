@@ -1,6 +1,5 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Container } from '@/components/ui/container'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
@@ -9,7 +8,7 @@ import { Heart, PenLine, BookOpen, SparklesIcon } from 'lucide-react'
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-pink-50 dark:from-pink-950 dark:via-background dark:to-pink-950">
-      <Container className="max-w-3xl px-4 pt-8 md:pt-20">
+      <div className="mx-auto max-w-3xl px-4 pt-8 md:pt-20">
         {/* Hero Section */}
         <div className="text-center mb-12 space-y-4">
           <div className="flex items-center justify-center space-x-2">
@@ -80,7 +79,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
         </div>
-      </Container>
+      </div>
     </div>
   )
 }
